@@ -1,5 +1,21 @@
 # Tunnel
 
+<p>
+  <a href="https://github.com/ZXflake/tunnel"><img alt="Pure AI Generated" src="https://img.shields.io/badge/Pure%20AI-100%25%20Generated-7C3AED?logo=openai&amp;logoColor=white"></a>
+  <a href="#进度与待办"><img alt="状态：开发中 WIP" src="https://img.shields.io/badge/状态-开发中%20WIP-orange"></a>
+  <a href="https://www.typescriptlang.org/"><img alt="TypeScript 5.7" src="https://img.shields.io/badge/TypeScript-5.7-3178C6?logo=typescript&amp;logoColor=white"></a>
+  <a href="https://vuejs.org/"><img alt="Vue 3.5" src="https://img.shields.io/badge/Vue-3.5-42B883?logo=vuedotjs&amp;logoColor=white"></a>
+  <a href="https://www.electronjs.org/"><img alt="Electron 33" src="https://img.shields.io/badge/Electron-33-47848F?logo=electron&amp;logoColor=white"></a>
+  <a href="#平台与协议支持现状"><img alt="平台" src="https://img.shields.io/badge/平台-macOS%20%7C%20Windows%20%7C%20Linux-2EA44F"></a>
+  <a href="#进度与待办"><img alt="本地自测" src="https://img.shields.io/badge/本地自测-94%2F94%20通过-brightgreen"></a>
+</p>
+
+> **纯 AI 生成**：需求讨论、架构决策、代码实现、文档与端到端自测均由 AI 产出。
+
+**源码仓库：[github.com/ZXflake/tunnel](https://github.com/ZXflake/tunnel)** · 公开 · 默认分支 `main`
+
+*徽标为静态状态标记；项目暂未配置 CI，也没有 Release 与许可证，自测数字来自本地 `npm run test:e2e`。*
+
 本地优先的多协议文件传输器。一个桌面应用同时承担协议工厂、传输引擎与 Web 服务；同一份 Vue 3 界面既跑在 Electron 窗口里，也能被手机浏览器打开做轻管理。
 
 支持 FTP / SFTP / SMB（SMB 2.02+）的连接管理、目录浏览、双向传输、断点续传与队列管理，目标是 macOS / Windows / Linux 三平台各出一个自包含安装包。
@@ -8,13 +24,13 @@
 
 ## 设计取舍
 
-| 决策 | 原因 |
-| --- | --- |
-| 不做移动端原生 App，桌面端内置可选 Web 服务 | 桌面应用即服务器，不依赖云端、账号或中继；手机浏览器零安装即可查看进度 |
-| Node / TypeScript 单一栈，不引入 Go 核心或 Samba 二进制 | 保持可维护性，避免多语言构建与 GPL 依赖 |
-| 协议工厂 + 统一适配器接口 | 新增协议只需实现接口并注册，传输引擎与 UI 不感知协议差异 |
-| 不考虑 SMB1（NT1/CIFS） | 已废弃且不安全；不允许协商降级，只支持 SMB 2.02 及以上 |
-| 一套 REST + WebSocket API 同时服务桌面与 Web | 业务数据不走 IPC；IPC 只保留系统对话框、`safeStorage`、token 等桌面专属能力 |
+| 决策                                         | 原因                                                  |
+| ------------------------------------------ | --------------------------------------------------- |
+| 不做移动端原生 App，桌面端内置可选 Web 服务                 | 桌面应用即服务器，不依赖云端、账号或中继；手机浏览器零安装即可查看进度                 |
+| Node / TypeScript 单一栈，不引入 Go 核心或 Samba 二进制 | 保持可维护性，避免多语言构建与 GPL 依赖                              |
+| 协议工厂 + 统一适配器接口                             | 新增协议只需实现接口并注册，传输引擎与 UI 不感知协议差异                      |
+| 不考虑 SMB1（NT1/CIFS）                         | 已废弃且不安全；不允许协商降级，只支持 SMB 2.02 及以上                    |
+| 一套 REST + WebSocket API 同时服务桌面与 Web        | 业务数据不走 IPC；IPC 只保留系统对话框、`safeStorage`、token 等桌面专属能力 |
 
 ## 主要功能
 
@@ -61,21 +77,23 @@ Electron 主进程与 `TunnelCore` 解耦：纯 Node 入口（`src/main/cli.ts`�
 
 ## 技术栈
 
-| 层 | 选型 |
-| --- | --- |
-| 桌面壳 | Electron 33 |
-| 前端 | Vue 3 + TypeScript + Vite 6 |
-| 协议 | `basic-ftp`、`ssh2`、SMB 可插拔适配器 |
-| 服务 | Node `http` + `ws`，REST + WebSocket |
-| 凭据 | Electron `safeStorage`（纯 Node 模式用开发密钥，仅用于本地开发） |
-| 打包 | electron-builder（dmg / nsis / AppImage + deb） |
-| 自测 | `tsx` + 临时 FTP 服务器（`ftp-srv`），端到端覆盖真实传输 |
+| 层   | 选型                                             |
+| --- | ---------------------------------------------- |
+| 桌面壳 | Electron 33                                    |
+| 前端  | Vue 3 + TypeScript + Vite 6                    |
+| 协议  | `basic-ftp`、`ssh2`、SMB 可插拔适配器                  |
+| 服务  | Node `http` + `ws`，REST + WebSocket            |
+| 凭据  | Electron `safeStorage`（纯 Node 模式用开发密钥，仅用于本地开发） |
+| 打包  | electron-builder（dmg / nsis / AppImage + deb）  |
+| 自测  | `tsx` + 临时 FTP 服务器（`ftp-srv`），端到端覆盖真实传输        |
 
 ## 快速开始
 
 环境要求：Node.js 20+、npm。
 
 ```bash
+git clone https://github.com/ZXflake/tunnel.git
+cd tunnel
 npm install
 npm run build          # 生成 dist/main 与 dist/renderer
 npm run dev:core       # 纯 Node 服务，浏览器打开 http://127.0.0.1:8787
@@ -95,16 +113,16 @@ npm run dist           # 出三平台安装包
 
 ### 命令一览
 
-| 命令 | 用途 |
-| --- | --- |
-| `npm run typecheck` | TypeScript 类型检查 |
-| `npm run build:main` / `build:web` | 分别构建主进程 / 前端 |
-| `npm run build` | 两者一起构建 |
-| `npm run dev:core` | 纯 Node 服务（默认 8787） |
-| `npm run dev:web` | Vite 前端开发服务器 |
-| `npm run dev:electron` | 启动桌面版 |
-| `npm run test:e2e` | 端到端自测（需先 `npm run build:web`） |
-| `npm run dist` | electron-builder 打包 |
+| 命令                                 | 用途                            |
+| ---------------------------------- | ----------------------------- |
+| `npm run typecheck`                | TypeScript 类型检查               |
+| `npm run build:main` / `build:web` | 分别构建主进程 / 前端                  |
+| `npm run build`                    | 两者一起构建                        |
+| `npm run dev:core`                 | 纯 Node 服务（默认 8787）            |
+| `npm run dev:web`                  | Vite 前端开发服务器                  |
+| `npm run dev:electron`             | 启动桌面版                         |
+| `npm run test:e2e`                 | 端到端自测（需先 `npm run build:web`） |
+| `npm run dist`                     | electron-builder 打包           |
 
 ## 目录结构
 
@@ -129,18 +147,18 @@ native/            Linux NAPI 原生产物的随包位置（当前仅占位）
 
 REST（均需鉴权，`/api/health` 除外）：
 
-| 方法 | 路径 | 用途 |
-| --- | --- | --- |
-| GET | `/api/bootstrap`、`/api/settings` | 应用信息 / Web 访问设置（PUT 修改） |
-| GET/POST | `/api/connections` | 列出 / 新建连接 |
-| POST | `/api/connections/:id/connect` `/disconnect` | 建立 / 断开浏览会话 |
-| DELETE | `/api/connections/:id` | 删除连接 |
-| GET | `/api/browse`、`/api/local` | 浏览远程 / 本地目录 |
-| GET/POST | `/api/tasks` | 列出 / 创建任务 |
-| POST | `/api/tasks/expand`、`/api/tasks/expand-upload` | 文件夹下载 / 上传递归展开 |
-| POST | `/api/tasks/bulk` | 全部暂停 / 全部开始 / 清除已完成 / 清除全部 |
-| POST | `/api/tasks/:id/pause` `/resume` `/cancel` | 单任务控制 |
-| DELETE | `/api/tasks/:id` | 移除任务 |
+| 方法       | 路径                                             | 用途                         |
+| -------- | ---------------------------------------------- | -------------------------- |
+| GET      | `/api/bootstrap`、`/api/settings`               | 应用信息 / Web 访问设置（PUT 修改）    |
+| GET/POST | `/api/connections`                             | 列出 / 新建连接                  |
+| POST     | `/api/connections/:id/connect` `/disconnect`   | 建立 / 断开浏览会话                |
+| DELETE   | `/api/connections/:id`                         | 删除连接                       |
+| GET      | `/api/browse`、`/api/local`                     | 浏览远程 / 本地目录                |
+| GET/POST | `/api/tasks`                                   | 列出 / 创建任务                  |
+| POST     | `/api/tasks/expand`、`/api/tasks/expand-upload` | 文件夹下载 / 上传递归展开             |
+| POST     | `/api/tasks/bulk`                              | 全部暂停 / 全部开始 / 清除已完成 / 清除全部 |
+| POST     | `/api/tasks/:id/pause` `/resume` `/cancel`     | 单任务控制                      |
+| DELETE   | `/api/tasks/:id`                               | 移除任务                       |
 
 WebSocket `/ws?token=...` 推送 `snapshot`、`task`、`task-removed`、`tasks-removed`、`connection` 消息；重连会收到一份全量快照。
 
@@ -154,13 +172,13 @@ WebSocket `/ws?token=...` 推送 `snapshot`、`task`、`task-removed`、`tasks-r
 
 ## 平台与协议支持现状
 
-| 协议 / 平台 | 状态 |
-| --- | --- |
-| FTP / FTPS、SFTP | 已实现并有真实 FTP 端到端自测覆盖 |
-| SMB · Windows / macOS | OS 原生后端代码就位（UNC / `mount_smbfs`），待真机点验 |
-| SMB · Linux | NAPI 绑定契约与加载占位已定，Rust `smb2` 绑定待实现；加载失败不影响 FTP / SFTP |
-| SMB1 | 明确不支持，也不允许降级 |
-| macOS / Windows / Linux 安装包 | electron-builder 配置就位；签名公证证书待准备 |
+| 协议 / 平台                     | 状态                                                    |
+| --------------------------- | ----------------------------------------------------- |
+| FTP / FTPS、SFTP             | 已实现并有真实 FTP 端到端自测覆盖                                   |
+| SMB · Windows / macOS       | OS 原生后端代码就位（UNC / `mount_smbfs`），待真机点验                |
+| SMB · Linux                 | NAPI 绑定契约与加载占位已定，Rust `smb2` 绑定待实现；加载失败不影响 FTP / SFTP |
+| SMB1                        | 明确不支持，也不允许降级                                          |
+| macOS / Windows / Linux 安装包 | electron-builder 配置就位；签名公证证书待准备                       |
 
 ## 进度与待办
 
