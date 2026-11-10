@@ -1,7 +1,10 @@
 # Tunnel
 
 <p>
-  <a href="https://github.com/ZXflake/tunnel"><img alt="Pure AI Generated" src="https://img.shields.io/badge/Pure%20AI-100%25%20Generated-7C3AED?logo=openai&amp;logoColor=white"></a>
+  <a href="https://github.com/ZXflake/tunnel"><img alt="Pure AI Generated" src="https://img.shields.io/badge/Pure%20AI-100%25%20Generated-7C3AED?style=for-the-badge"></a>
+</p>
+
+<p>
   <a href="#进度与待办"><img alt="状态：开发中 WIP" src="https://img.shields.io/badge/状态-开发中%20WIP-orange"></a>
   <a href="https://www.typescriptlang.org/"><img alt="TypeScript 5.7" src="https://img.shields.io/badge/TypeScript-5.7-3178C6?logo=typescript&amp;logoColor=white"></a>
   <a href="https://vuejs.org/"><img alt="Vue 3.5" src="https://img.shields.io/badge/Vue-3.5-42B883?logo=vuedotjs&amp;logoColor=white"></a>
@@ -14,7 +17,7 @@
 
 **源码仓库：[github.com/ZXflake/tunnel](https://github.com/ZXflake/tunnel)** · 公开 · 默认分支 `main`
 
-*徽标为静态状态标记；项目暂未配置 CI，也没有 Release 与许可证，自测数字来自本地 `npm run test:e2e`。*
+*徽标为静态状态标记；项目暂未配置 CI 与 Release，自测数字来自本地 `npm run test:e2e`。*
 
 本地优先的多协议文件传输器。一个桌面应用同时承担协议工厂、传输引擎与 Web 服务；同一份 Vue 3 界面既跑在 Electron 窗口里，也能被手机浏览器打开做轻管理。
 
@@ -198,4 +201,4 @@ WebSocket `/ws?token=...` 推送 `snapshot`、`task`、`task-removed`、`tasks-r
 
 ## 许可证
 
-尚未指定。
+[MIT](./LICENSE)。任何人可自由使用、复制、修改与再分发本软件，只需保留版权声明与许可声明；软件按「现状」提供，不附任何担保。
