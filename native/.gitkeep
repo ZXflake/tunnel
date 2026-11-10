@@ -1,0 +1,4 @@
+Linux SMB NAPI 原生模块放于此目录：
+  smb-linux-x64.node
+  smb-linux-arm64.node
+由 electron-builder extraResources 随包分发到 resources/native；未放置时 Linux SMB 会给出明确的不可用提示，FTP / SFTP 不受影响。
